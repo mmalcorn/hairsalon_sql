@@ -6,6 +6,7 @@
     */
 
     require_once "src/Stylist.php";
+    require_once "src/Client.php";
 
     $server = 'mysql:host=localhost:8889;dbname=hair_salon_test';
     $username = 'root';
@@ -35,12 +36,6 @@
             $this->assertEquals($name, $result);
         }
 
-        function testGetStylistId()
-        {
-
-        }
-
-
         function testSave()
         {
           //Arrange
@@ -50,7 +45,6 @@
 
           //Act
           $result = Stylist::getAll();
-
 
           //Assert
           $this->assertEquals($test_stylist, $result[0]);
@@ -92,7 +86,7 @@
           $this->assertEquals([], $result);
         }
 
-        function test_find()
+        function testFindStylistId()
         {
           $name = "Jesse Thacker";
           $name2 = "Stylin Douglas";
@@ -104,6 +98,44 @@
           $result = Stylist::find($test_stylist->getId());
 
           $this->assertEquals($test_stylist, $result);
+        }
+
+        function testGetClients()
+        {
+          //Arrange Stylists
+          //Create Two Instances of Stylists and Test Respective Id's
+          $stylist_name = "Jesse Thacker";
+          $stylist_name2 = "Stylin Douglas";
+          $test_stylist = new Stylist ($stylist_name);
+          $test_stylist->save();
+          $test_stylist_id = $test_stylist->getId();
+          $test_stylist2 = new Stylist ($stylist_name2);
+          $test_stylist2->save();
+          $test_stylist_id2 = $test_stylist2->getId();
+
+          //Arrange Clients
+          //Create Two Instances of Clients and Set Them to A Stylist
+          $client_name = "Meredith Alcorn";
+          $test_client = new Client ($client_name, $test_stylist_id);
+          $test_client->save();
+
+          $client_name2 = "Pebbles Flintstone";
+          $test_client2 = new Client ($client_name2, $test_stylist_id);
+          $test_client2->save();
+
+          $client_name3 = "Deuce Hedgepeth";
+          $test_client3 = new Client ($client_name3, $test_stylist_id2);
+          $test_client3->save();
+
+          //Act
+          $result = $test_stylist->getClients();
+
+          //Assert
+          $this->assertEquals([$test_client, $test_client2], $result);
+
+
+
+
 
         }
     }
