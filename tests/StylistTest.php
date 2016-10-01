@@ -35,6 +35,11 @@
             $this->assertEquals($name, $result);
         }
 
+        function testGetStylistId()
+        {
+
+        }
+
 
         function testSave()
         {
