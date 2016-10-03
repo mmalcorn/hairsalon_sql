@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Here is a list of all of our stylists:</h1>
+    <h3>{{ stylist.getName }}</h3>
+
+    {% if stylists is not empty %}
+      {% for stylists in stylist %}
+        <ul> {{ stylist.getName }} </ul>
+      {% endfor %}
+    {% endif %}
+
+    <div class="col-sm-6">
+      <form action="/stylists" method="post">
+        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+        <label for="add_stylist">Enter Stylist Name to Add A Stylist</label>
+        <input id="add_stylist" name="add_stylist" type="text">
+        <button type="submit" class="btn btn-success">Add stylist</button>
+      </form>
+
+      <form action="/remove_stylists" method="post">
+        <button type="submit">Clear All Stylists</button>
+      </form>
+
+    <p> <a href="/">Home</a> </p>
+
+  </body>
+</html>
