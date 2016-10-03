@@ -132,11 +132,6 @@
 
           //Assert
           $this->assertEquals([$test_client, $test_client2], $result);
-
-
-
-
-
         }
     }
 ?>

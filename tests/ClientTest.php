@@ -91,6 +91,19 @@
         $this->assertEquals($result, []);
       }
 
+      function testUpdate()
+      {
+        $client_name = "Meredith ALcorn";
+        $id = null;
+        $test_client = new Client ($client_name, $id);
+
+        $new_name = "Meredith Grey";
+
+        $test_client->update($new_name);
+
+        $this->assertEquals("Meredith Grey", $test_client->getClientName());
+      }
+
     }
 
 

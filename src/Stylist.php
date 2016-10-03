@@ -77,6 +77,13 @@
         }
           return $clients;
       }
+
+      function delete()
+      {
+
+      }
+
+
     }
 
  ?>
