@@ -11,32 +11,8 @@
 
       <div class="container">
         <div class="col-sm-6">
-          <p><a href="/stylists.html.twig">Click here</a> to view all stylists.</p>
-          <p><a href="/clients.html.twig">Click here</a> to view all clients, and to add a client</p>
-        </div>
-
-        <div class="col-sm-6">
-          <form action="/stylists" method="post">
-            <label for="add_stylist">Enter Stylist Name to Add A Stylist</label>
-            <input id="add_stylist" name="add_stylist" type="text">
-            <button type="submit" class="btn btn-success">Add stylist</button>
-          </form>
-
-          {% if stylists is not empty %}
-              <p> Here is a list of all of our stylists: </p>
-
-            {% for stylist in stylists %}
-              <ul><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></ul>
-            {% endfor %}
-
-          {% else %}
-              <p> There are no stylists to list </p>
-          {% endif %}
-
-          <form action="/stylists/{delete_id}" method="delete">
-            <button type="submit">Clear All Stylists</button>
-          </form>
-
+          <p><a href="/stylists">Click here</a> to add a stylist, or view all stylists.</p>
+          <p><a href="/clients">Click here</a> to add a client, or view all clients, and to add a client</p>
         </div>
 
       </div>
