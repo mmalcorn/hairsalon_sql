@@ -60,8 +60,8 @@
             if ($stylist_id == $search_id) {
               $found_stylist = $stylist;
             }
-            return $found_stylist;
           }
+          return $found_stylist;
       }
 
       function getClients()
