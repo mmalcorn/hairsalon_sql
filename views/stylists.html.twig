@@ -10,15 +10,30 @@
       <h1>Blown Away Hair Salon</h1>
 
       <div class="container">
-        <h1>Stylists:</h1>
-        {% if stylists is not empty %}
-            <p>Here is a list of all of our stylists:</p>
-            <ul>
-            {% for stylist in stylists %}
-              <p>{{stylist.getName}}</p>
-            {% endfor %}
-            </ul>
-        {% endif %}
+        <div class="col-xs-6">
+          <h1>Stylists:</h1>
+          {% if stylists is not empty %}
+              <p>Here is a list of all of our stylists:</p>
+              <ul>
+              {% for stylist in stylists %}
+                <p><a href=/stylists/{{stylist.getId}}>{{stylist.getName}}</a></p>
+              {% endfor %}
+              </ul>
+          {% endif %}
+        </div>
+        <div class="col-xs-6">
+          <h1>Add a new stylist:</h1>
+
+          <form action="/stylists" method="post">
+            <label for="add_stylist">Stylist name</label>
+            <input id="add_stylist" type="text" name="add_stylist">
+            <button type="submit" class="btn btn-success">Add</button>
+          </form>
+        </div>
+
+          <!-- TODO: ADD DELETE ALL BUTTON -->
+
+
       </div>
 
     </body>

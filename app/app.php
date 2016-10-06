@@ -23,11 +23,15 @@
         return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    // $app->post("/stylists", function() use ($app) {
-    //   $stylist = new Stylist($_POST['add_stylist']);
-    //   $stylist->save();
-    //   return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
-    // });
+    $app->post("/stylists", function() use ($app) {
+      $stylist = new Stylist($_POST['add_stylist']);
+      $stylist->save();
+      return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    $app->get("/stylists/{stylist_id}", function($stylist_id) use ($app) {
+      return $app['twig']->render('stylist.html.twig', array('single_stylist' => Stylist::find($stylist_id)));
+    });
 
     //clients
     $app->get("/clients", function() use ($app) {
