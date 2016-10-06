@@ -7,27 +7,31 @@
   <body>
 
     <h1>Here is a list of all of our stylists:</h1>
-    <h3>{{ stylist.getName }}</h3>
-
+    <ul>
     {% if stylists is not empty %}
-      {% for stylists in stylist %}
-        <ul> {{ stylist.getName }} </ul>
+      {% for stylist in stylists %}
+        <li> <a href="/stylists{id}/{{ client.getId }}">{{ stylist.getName }} </a></li>
       {% endfor %}
     {% endif %}
+  </ul>
 
-    <div class="col-sm-6">
-      <form action="/stylists" method="post">
-        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
-        <label for="add_stylist">Enter Stylist Name to Add A Stylist</label>
-        <input id="add_stylist" name="add_stylist" type="text">
-        <button type="submit" class="btn btn-success">Add stylist</button>
-      </form>
-
-      <form action="/remove_stylists" method="post">
-        <button type="submit">Clear All Stylists</button>
-      </form>
-
+    <p> <a href="/clients.html.twig">Add A Client</a> </p>
     <p> <a href="/">Home</a> </p>
+
+    <form action="/clients" method="post">
+
+      <input class="form-control" id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+      <label for="add_client">Enter Client Name to Add A Client</label>
+      <input id="add_client" name="add_client" type="text">
+      <button type="submit" class="btn btn-success">Add client</button>
+    </form>
+
+
+    {% if clients is not empty %}
+      {% for client in clients %}
+        <ul> {{ client.getClienttName }} </ul>
+      {% endfor %}
+    {% endif %}
 
   </body>
 </html>

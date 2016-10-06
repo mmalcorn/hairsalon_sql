@@ -11,8 +11,8 @@
 
       <div class="container">
         <div class="col-sm-6">
-          <p><a href="/stylists">Click here</a> to view all stylists.</p>
-          <p><a href="/clients">Click here</a> to view all clients, and to add a client</p>
+          <p><a href="/stylists.html.twig">Click here</a> to view all stylists.</p>
+          <p><a href="/clients.html.twig">Click here</a> to view all clients, and to add a client</p>
         </div>
 
         <div class="col-sm-6">
@@ -32,6 +32,10 @@
           {% else %}
               <p> There are no stylists to list </p>
           {% endif %}
+
+          <form action="/stylists/{delete_id}" method="delete">
+            <button type="submit">Clear All Stylists</button>
+          </form>
 
         </div>
 
