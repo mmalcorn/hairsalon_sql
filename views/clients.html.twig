@@ -7,15 +7,18 @@
         <title>Hair Salon</title>
     </head>
     <body>
-      <h1>Blown Away Hair Salon</h1>
-
       <div class="container">
-        <h1>Clients:</h1>
+        <h1>Blown Away Hair Salon</h1>
+        <hr>
+        <h2>Clients:</h2>
+        
         {% if clients is not empty %}
           {% for client in clients %}
           <p><a href=/clients/{{clients.getId}}>{{clients.getClientName}}</a></p>
           {% endfor %}
         {% endif %}
+
+        <a href="/">Home</a>
       </div>
 
       <!-- <form action="/clients" method="post">

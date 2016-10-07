@@ -36,14 +36,14 @@
         static function getAll()
         {
           $database_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
-          $add_stylists = array();
+          $all_stylists = array();
           foreach($database_stylists as $stylist) {
             $name = $stylist['stylist_name'];
             $id = $stylist['id'];
             $new_stylist = new Stylist($name, $id);
-            array_push($add_stylists, $new_stylist);
+            array_push($all_stylists, $new_stylist);
           }
-            return $add_stylists;
+            return $all_stylists;
          }
 
         static function deleteAll()
