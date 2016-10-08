@@ -10,24 +10,22 @@
       <div class="container">
         <h1>Blown Away Hair Salon</h1>
         <hr>
-        <div class="col-xs-6">
+        <div class="col-xs-12">
           <h2>Stylists:</h2>
           {% if stylists is not empty %}
               <p>Here is a list of all of our stylists:</p>
-              <ul>
               {% for stylist in stylists %}
                 <p><a href="/stylists/{{stylist.getId}}">{{stylist.getName}}</a></p>
               {% endfor %}
-              </ul>
               <form action="/delete_stylists" method="post">
-                <button class="btn btn-default" type="submit">Delete All Stylists</button>
+                <button class="btn btn-danger" type="submit">Delete All</button>
               </form>
           {% endif %}
         </div>
         <div class="col-xs-6">
           <h2>Add a new stylist:</h2>
 
-          <form action="/stylists" method="post">
+          <form action="/add_stylists" method="post">
             <label for="add_stylist">Stylist name</label>
             <input id="add_stylist" type="text" name="add_stylist">
             <button type="submit" class="btn btn-success">Add</button>
@@ -35,7 +33,7 @@
         </div>
 
         <div class="col-xs-12">
-          <a href="/">Home</a>
+          <a href="/">Go Back</a>
         <div>
       </div>
 

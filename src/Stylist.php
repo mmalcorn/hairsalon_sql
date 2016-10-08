@@ -6,7 +6,6 @@
         private $id;
 
         function __construct($name, $id = null)
-
         {
           $this->name = $name;
           $this->id = $id;
@@ -55,6 +54,7 @@
         {
           $found_stylist = null;
           $stylists = Stylist::getAll();
+
           foreach ($stylists as $stylist) {
             $stylist_id = $stylist->getId();
             if ($stylist_id == $search_id) {

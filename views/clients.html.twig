@@ -10,15 +10,31 @@
       <div class="container">
         <h1>Blown Away Hair Salon</h1>
         <hr>
+        <form action="/add_new_client" method="post">
+          <h3>Add New Client</h3>
+            <div class="form-group">
+                <input id="client-name" name="client-name" class="form-control" type="text" placeholder="Enter name" required>
+            </div>
+            <h3>Select Stylist</h3>
+            <div class="form-group">
+              <select id="stylist_id" name="dropdown_stylist" class="form-control" type="text">
+                  {% for stylist in stylists %}
+                      <option value="{{ stylist.getId }}">{{ stylist.getName }}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+
         <h2>Clients:</h2>
-        
+
         {% if clients is not empty %}
           {% for client in clients %}
-          <p><a href=/clients/{{clients.getId}}>{{clients.getClientName}}</a></p>
+          <p><a href=/clients/{{client.getId}}>{{client.getClientName}}</a></p>
           {% endfor %}
         {% endif %}
-
-        <a href="/">Home</a>
+        <hr>
+        <a href="/">Go Back</a>
       </div>
 
       <!-- <form action="/clients" method="post">

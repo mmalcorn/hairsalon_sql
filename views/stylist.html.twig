@@ -12,25 +12,22 @@
         <hr>
           <h2>{{single_stylist.getName}}</h2>
           <br>
-          <form action="/stylists/{{single_stylist.getId}}" method="post">
+          <form action="client_for_stylist" method="post">
             <label for="add_client">Client name</label>
             <input id="add_client" type="text" name="add_client_input">
             <button type="submit" class="btn btn-success">Add</button>
           </form>
           <br>
+          
           <h4>{{single_stylist.getName}}'s Clients:</h4>
-
 
           {% if clients is not empty %}
             {% for client in clients %}
-              {{clients.getClientName}}
+              <p>{{client.getClientName}}</p>
             {% endfor %}
           {% endif %}
-
-          <form>
-          </form>
-
-          <a href="/">Home</a>
+          <hr>
+          <a href="/">Go Back</a>
       </div>
 
     </body>
