@@ -55,7 +55,7 @@
       $new_client->save();
       return $app['twig']->render('stylist.html.twig', array(
         'single_stylist' => $stylist,
-        'clients' => Client::getAll()
+        'clients' => $stylist->getClients()
         ));
     });
 

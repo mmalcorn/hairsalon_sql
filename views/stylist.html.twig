@@ -13,6 +13,7 @@
           <h2>{{single_stylist.getName}}</h2>
           <br>
           <form action="/client_for_stylist" method="post">
+            <input id="stylist_id" name="stylist_id" class="form-control" type="hidden" value="{{ single_stylist.getId() }}">
             <label for="add_client">Client name</label>
             <input id="add_client" type="text" name="add_client_input">
             <button type="submit" class="btn btn-success">Add</button>
