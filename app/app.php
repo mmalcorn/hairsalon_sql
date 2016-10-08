@@ -56,14 +56,16 @@
       return $app['twig']->render('stylist.html.twig', array(
         'single_stylist' => $stylist,
         'clients' => Client::getAll()
-      ));
+        ));
     });
 
     // Clients (multiple)
 
     $app->get("/clients", function() use ($app) {
         return $app['twig']->render('clients.html.twig', array(
-          'clients' => Client::getAll()));
+          'clients' => Client::getAll(),
+          'stylists' => Stylist::getAll()
+        ));
     });
 
     $app->post("/add_new_client", function() use ($app) {
@@ -75,6 +77,11 @@
         'clients' => Client::getAll(),
         'stylists' => Stylist::getAll()
       ));
+    });
+
+    $app->post("/delete_clients", function() use ($app) {
+      Client::deleteAll();
+      return $app['twig']->render('clients.html.twig');
     });
 
 

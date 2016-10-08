@@ -47,15 +47,15 @@
     static function getAll()
     {
       $database_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
-      $add_clients = array();
+      $all_clients = array();
       foreach($database_clients as $client) {
         $client_name = $client['client_name'];
         $stylist_id = $client['stylist_id'];
         $id = $client['id'];
         $new_client = new Client($client_name, $stylist_id, $id);
-        array_push($add_clients, $new_client);
+        array_push($all_clients, $new_client);
       }
-        return $add_clients;
+        return $all_clients;
     }
 
     static function deleteAll()
