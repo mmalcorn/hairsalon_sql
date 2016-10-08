@@ -47,20 +47,17 @@
       ));
     });
 
-//     $app->get("/courses/{course_id}", function($course_id) use($app) {
-//     $current_course = Course::find($course_id);
-//     return $app['twig']->render('course.html.twig', array(
-//         'single_course' => $current_course,
-//         'all_students' => Student::getAll(),
-//         'students_in_this_course' => $current_course->getStudents()
-//     ));
-// });
-
-
-    // $app->post("client_for_stylist", function() use ($app) {
-    //   $
-    //
-    // });
+    $app->post("/client_for_stylist", function() use ($app) {
+      $client_name = $_POST['add_client_input'];
+      $stylist_id = $_POST['stylist_id'];
+      $stylist = Stylist::find($stylist_id);
+      $new_client = new Client($client_name, $stylist_id);
+      $new_client->save();
+      return $app['twig']->render('stylist.html.twig', array(
+        'single_stylist' => $stylist,
+        'clients' => Client::getAll()
+      ));
+    });
 
     // Clients (multiple)
 
