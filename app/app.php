@@ -43,7 +43,7 @@
       $current_stylist = Stylist::find($stylist_id);
       return $app['twig']->render('stylist.html.twig', array(
         'single_stylist' => $current_stylist,
-        'clients' => Client::getAll()
+        'clients' => $current_stylist->getClients()
       ));
     });
 
