@@ -46,17 +46,19 @@
 
     static function getAll()
     {
-      $database_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
-      $all_clients = array();
-      foreach($database_clients as $client) {
-        $client_name = $client['client_name'];
-        $stylist_id = $client['stylist_id'];
-        $id = $client['id'];
-        $new_client = new Client($client_name, $stylist_id, $id);
-        array_push($all_clients, $new_client);
+        $all_clients = $GLOBALS["DB"]->query("SELECT * FROM clients;");
+        $clients = array();
+        foreach ($all_clients as $client)
+        {
+            $name = $client['client_name'];
+            $client_id = $client['id'];
+            $stylist_id = $client['stylist_id'];
+            $new_client = new Client($name, $stylist_id, $id);
+            array_push($clients, $new_client);
+        }
+        return $clients;
       }
-        return $all_clients;
-    }
+
 
     static function deleteAll()
     {
@@ -68,8 +70,8 @@
       $found_client = null;
       $clients = Client::getAll();
       foreach ($clients as $client) {
-        $id = $client->getId();
-        if ($id == $search_id) {
+        $client_id = $client->getId();
+        if ($client_id == $search_id) {
           $found_client = $client;
         }
       }

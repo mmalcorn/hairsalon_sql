@@ -29,6 +29,7 @@
         {% if clients is not empty %}
           {% for client in clients %}
           <p><a href=/clients/{{client.getId}}>{{client.getClientName}}</a></p>
+          <p><a href="/clients/ {{ client.getId }}/edit">Edit This Client</a></p>
           {% endfor %}
         {% endif %}
 
@@ -37,7 +38,6 @@
         </form>
 
         <hr>
-        <a href="/">Go Back</a>
       </div>
 
 

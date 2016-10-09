@@ -10,12 +10,19 @@
       <div class="container">
         <h1>Blown Away Hair Salon</h1>
         <hr>
-          <h2>{{ single_client.getClientName }}</h2>
+          <h2>Client: {{ single_client.getClientName }}</h2>
+          <a href="/clients/{{ single_client.getId }}/edit">Edit </a>
+          <br>
+          <form action="/clients/{{ single_client.getId }}" method="post">
+            <input name="_method" type="hidden" value="delete">
 
-          <h4>Stylist: {{ single_stylist.getName }}</h4>
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          <h4>Stylist:</h4>
+           {{ single_stylist.getName }}
 
           <hr>
-          <a href="/">Go Back</a>
+          <a href="/">Go Home</a>
       </div>
 
     </body>

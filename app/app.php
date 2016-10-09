@@ -14,6 +14,9 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig');
     });
@@ -81,17 +84,45 @@
 
     $app->post("/delete_clients", function() use ($app) {
       Client::deleteAll();
-      return $app['twig']->render('clients.html.twig');
+      return $app['twig']->render('clients.html.twig', array(
+        'stylists' => Stylist::getAll()
+      ));
     });
+
+    // Client (single)
 
     $app->get("/clients/{client_id}", function($client_id) use ($app) {
         $current_client = Client::find($client_id);
         $stylist_id_for_client = $current_client->getStylistId();
         $client_stylist = Stylist::find($stylist_id_for_client);
         return $app['twig']->render('client.html.twig', array(
-        'single_client' => $current_client,
-        'single_stylist' => $client_stylist
-      ));
+          'single_client' => $current_client,
+          'single_stylist' => $client_stylist
+        ));
+    });
+
+    //Edit client name
+    $app->get("/clients/{client_id}/edit", function($client_id) use ($app) {
+        $client = Client::find($client_id);
+        return $app['twig']->render('edit_client.html.twig', array('clients' => $client
+        ));
+    });
+
+    $app->patch("/clients/{client_id}", function($client_id) use ($app) {
+      $client_name = $_POST['name'];
+      $client = Client::find($client_id);
+      $client->update($client_name);
+      return $app['twig']->render('clients.html.twig', array('clients' => $client, 'stylists' => $client->getClients()));
+    });
+
+
+    $app->delete("/clients/{client_id}", function($client_id) use ($app) {
+        $client_to_delete = Client::find($client_id);
+        $client_to_delete->delete();
+        return $app['twig']->render('clients.html.twig', array(
+          'clients' => Client::getAll(),
+          'stylists' => Stylist::getAll()
+        ));
     });
 
 
