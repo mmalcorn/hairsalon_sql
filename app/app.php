@@ -84,6 +84,16 @@
       return $app['twig']->render('clients.html.twig');
     });
 
+    $app->get("/clients/{client_id}", function($client_id) use ($app) {
+        $current_client = Client::find($client_id);
+        $stylist_id_for_client = $current_client->getStylistId();
+        $client_stylist = Stylist::find($stylist_id_for_client);
+        return $app['twig']->render('client.html.twig', array(
+        'single_client' => $current_client,
+        'single_stylist' => $client_stylist
+      ));
+    });
+
 
     return $app;
 ?>
