@@ -40,7 +40,7 @@
 
         $id = 1;
         $client_name = "Meredith Alcorn";
-        $test_client = new Client($name, $stylist_id, $id);
+        $test_client = new Client($client_name, $stylist_id, $id);
 
         $result = $test_client->getId();
 
@@ -50,12 +50,13 @@
       function testGetStylistId()
       {
         $stylist_name = "Stylin Douglas";
+        $id = null;
         $test_stylist = new Stylist($stylist_name);
         $test_stylist->save();
         $stylist_id = $test_stylist->getId();
 
         $client_name = "Meredith";
-        $test_client = new Client($name, $stylist_id, $id);
+        $test_client = new Client($client_name, $stylist_id);
 
         $result = $test_client->getStylistId();
 
@@ -65,6 +66,7 @@
       function testSave()
       {
         $stylist_name = "Stylin Douglas";
+        $id = null;
         $test_stylist = new Stylist($stylist_name);
         $test_stylist->save();
         $stylist_id = $test_stylist->getId();
@@ -149,13 +151,23 @@
       function testDelete()
       {
         //Arrange
+        $stylist_name = "Jesse Thacker";
+        $test_stylist = new Stylist($stylist_name);
+        $test_stylist->save();
+        $stylist_id = $test_stylist->getId();
+
+        $stylist_name2 = "Stylin Douglas";
+        $test_stylist2 = new Stylist($stylist_name2);
+        $test_stylist2->save();
+        $stylist_id2 = $test_stylist2->getId();
+
         $client_name = "Kendra Franklin";
         $id = null;
-        $test_client = new Client($client_name, $id);
+        $test_client = new Client($client_name, $stylist_id, $id);
         $test_client->save();
 
         $client_name2 = "Hank Dasket";
-        $test_client2 = new Client($client_name2, $id);
+        $test_client2 = new Client($client_name2, $stylist_id2, $id);
         $test_client2->save();
 
         //Act
