@@ -6,24 +6,32 @@
         <link href="/css/styles.css" rel="stylesheet" type="text/css">
         <title>Hair Salon</title>
     </head>
+
     <body>
       <div class="container">
         <h1>Blown Away Hair Salon</h1>
         <hr>
-          <h2>Client: {{ single_client.getClientName }}</h2>
-          <a href="/clients/{{ single_client.getId }}/edit">Edit </a>
-          <br>
-          <form action="/clients/{{ single_client.getId }}" method="post">
-            <input name="_method" type="hidden" value="delete">
+        <div class="row">
+          <div class="col-xs-6">
+            <h2>Client: {{ single_client.getClientName }}</h2>
+            <br>
+            <p><a href="/clients/ {{ single_client.getId }}/edit">Edit This Client</a></p>
+            <br>
+            <form action="/clients/{{ single_client.getId }}" method="post">
+              <input name="_method" type="hidden" value="delete">
 
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-          <h4>Stylist:</h4>
-           {{ single_stylist.getName }}
+              <button type="submit" class="btn btn-danger">Delete Client</button>
+            </form>
+          </div>
 
-          <hr>
+          <div class="col-xs-6">
+            <h4>Stylist: {{ single_stylist.getName }}</h4>
+          </div>
+        <br>
+        <div class="col-xs-12">
+        <hr>
           <a href="/">Go Home</a>
+        </div>
       </div>
-
     </body>
 </html>

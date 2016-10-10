@@ -29,13 +29,14 @@
         {% if clients is not empty %}
           {% for client in clients %}
           <p><a href=/clients/{{client.getId}}>{{client.getClientName}}</a></p>
-          <p><a href="/clients/ {{ client.getId }}/edit">Edit This Client</a></p>
           {% endfor %}
         {% endif %}
 
         <form action="/delete_clients" method="post">
           <button type="submit" class="btn btn-danger">Delete Clients</button>
         </form>
+        <br>
+        <a href="/">Go Back</a>
 
         <hr>
       </div>
