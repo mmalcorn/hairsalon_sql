@@ -16,7 +16,7 @@
               <p>Here is a list of all of our stylists:</p>
               {% for stylist in stylists %}
                 <p><h4><a href="/stylists/{{stylist.getId}}">{{stylist.getName}}</h4></a>
-                  <a href="/stylists/ {{ stylist.getId }}/edit">Edit {{stylist.getName}}</a>
+                  <a href="/stylists/{{stylist.getId}}/edit">Edit {{stylist.getName}}</a>
                 </p>
               {% endfor %}
               <form action="/delete_stylists" method="post">

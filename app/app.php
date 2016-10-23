@@ -45,22 +45,22 @@
     $app->get("/stylists/{stylist_id}", function($stylist_id) use ($app) {
       $current_stylist = Stylist::find($stylist_id);
       return $app['twig']->render('stylist.html.twig', array(
-        'single_stylist' => $current_stylist,
+        'stylist' => $current_stylist,
         'clients' => $current_stylist->getClients()
       ));
     });
 
-    $app->post("/client_for_stylist", function() use ($app) {
-      $client_name = $_POST['add_client_input'];
-      $stylist_id = $_POST['stylist_id'];
-      $stylist = Stylist::find($stylist_id);
-      $new_client = new Client($client_name, $stylist_id);
-      $new_client->save();
-      return $app['twig']->render('stylist.html.twig', array(
-        'single_stylist' => $stylist,
-        'clients' => $stylist->getClients()
-        ));
-    });
+    // $app->post("/client_for_stylist", function() use ($app) {
+    //   $client_name = $_POST['add_client_input'];
+    //   $stylist_id = $_POST['stylist_id'];
+    //   $stylist = Stylist::find($stylist_id);
+    //   $new_client = new Client($client_name, $stylist_id);
+    //   $new_client->save();
+    //   return $app['twig']->render('stylist.html.twig', array(
+    //     'single_stylist' => $stylist,
+    //     'clients' => $stylist->getClients()
+    //     ));
+    // });
 
     // Edit Stylist
 
@@ -75,6 +75,16 @@
       $stylist_name = $_POST["stylist_name"];
       $stylist = Stylist::find($stylist_id);
       $stylist->update($stylist_name);
+      return $app['twig']->render("stylist.html.twig", array(
+        "stylist" => $stylist,
+        "clients" => $stylist->getClients()
+      ));
+    });
+
+    $app->post("/stylists/{stylist_id}", function($stylist_id) use ($app) {
+      $stylist = Stylist::find($stylist_id);
+      $client = new Client($_POST["add_client_input"], $stylist_id);
+      $client->save();
       return $app['twig']->render("stylist.html.twig", array(
         "stylist" => $stylist,
         "clients" => $stylist->getClients()
@@ -115,8 +125,8 @@
         $stylist_id_for_client = $current_client->getStylistId();
         $client_stylist = Stylist::find($stylist_id_for_client);
         return $app['twig']->render('client.html.twig', array(
-          'single_client' => $current_client,
-          'single_stylist' => $client_stylist
+          'client' => $current_client,
+          'stylist' => $client_stylist
         ));
     });
 
@@ -132,7 +142,7 @@
       $stylist_id_for_client = $client->getStylistId();
       $client_stylist = Stylist::find($stylist_id_for_client);
       $client->update($client_name);
-      return $app['twig']->render('client.html.twig', array('clients' => $client, 'stylists' => $client_stylist
+      return $app['twig']->render('client.html.twig', array('client' => $client, 'stylist' => $client_stylist
       ));
     });
 

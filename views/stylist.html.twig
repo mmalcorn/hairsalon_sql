@@ -10,17 +10,16 @@
       <div class="container">
         <h1>Blown Away Hair Salon</h1>
         <hr>
-          <h2>{{single_stylist.getName}}</h2>
+          <h2>{{stylist.getName}}</h2>
           <br>
-          <form action="/client_for_stylist" method="post">
-            <input id="stylist_id" name="stylist_id" class="form-control" type="hidden" value="{{ single_stylist.getId() }}">
+          <form action="/stylists/{{stylist.getId}}" method="post">
             <label for="add_client">Client name</label>
             <input id="add_client" type="text" name="add_client_input">
             <button type="submit" class="btn btn-success">Add</button>
           </form>
           <br>
 
-          <h4>{{single_stylist.getName}}'s Clients:</h4>
+          <h4>{{stylist.getName}}'s Clients:</h4>
 
           {% if clients is not empty %}
             {% for client in clients %}

@@ -13,11 +13,11 @@
         <hr>
         <div class="row">
           <div class="col-xs-6">
-            <h2>Client: {{ single_client.getClientName }}</h2>
+            <h2>Client: {{ client.getClientName }}</h2>
             <br>
-            <p><a href="/clients/ {{ single_client.getId }}/edit">Edit This Client</a></p>
+            <p><a href="/clients/{{client.getId}}/edit">Edit This Client</a></p>
             <br>
-            <form action="/clients/{{ single_client.getId }}" method="post">
+            <form action="/clients/{{client.getId}}" method="post">
               <input name="_method" type="hidden" value="delete">
 
               <button type="submit" class="btn btn-danger">Delete Client</button>
@@ -25,7 +25,7 @@
           </div>
 
           <div class="col-xs-6">
-            <h4>Stylist: {{ single_stylist.getName }}</h4>
+            <h4>Stylist: {{ stylist.getName }}</h4>
           </div>
         <br>
         <div class="col-xs-12">
